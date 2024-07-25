@@ -15,18 +15,22 @@ const generateSpacings = () => {
     3.5: '0.875rem',
   };
 
-  const convertRemsToFloat = (value) => parseFloat(value.replace('rem', ''));
+  const convertRemsToFloat = (value: any) => parseFloat(value.replace('rem', ''));
 
   let prev;
   // eslint-disable-next-line no-plusplus
   for (let i = 4; i <= 100; i++) {
     if (!prev) {
       prev = 1;
+      // @ts-ignore
       spacings[i] = `${prev}rem`;
+      // @ts-ignore
       spacings[`${i}.5`] = `${convertRemsToFloat(spacings[i]) + DEFAULT_HALF_SPACING_SCALE}rem`;
       continue; // eslint-disable-line no-continue
     }
+    // @ts-ignore
     spacings[i] = `${prev + DEFAULT_SPACING_SCALE}rem`;
+    // @ts-ignore
     spacings[`${i}.5`] = `${convertRemsToFloat(spacings[i]) + DEFAULT_HALF_SPACING_SCALE}rem`;
     prev += DEFAULT_SPACING_SCALE;
   }
